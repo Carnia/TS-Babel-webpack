@@ -10,7 +10,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "allowJs":true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react",
     "lib": [
       "dom",
       "es2015"
@@ -18,21 +17,16 @@
     "outDir": "./dist/",
     "typeRoots": [
       "./node_modules/@types/",
+      "./node_modules/phaser/types",
       "./src/@types/"
+    ],
+    "types": [
+      "Phaser"
     ],
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"],
-      "@api/*": ["api/*"],
-      "@style/*": ["style/*"],
-      "@stores/*": ["stores/*"],
-      "@assets/*": ["assets/*"],
-      "@components/*": ["components/*"],
-      "@constants/*": ["constants/*"],
-      "@models/*": ["models/*"],
-      "@pages/*": ["pages/*"],
-      "@views/*": ["views/*"],
-      "@utils/*": ["utils/*"]
+      "@assets/*": ["assets/*"]
     }
   },
   "compileOnSave": false,

@@ -11,7 +11,9 @@
     "build": "set NODE_ENV=production&& webpack --config build/webpack.prod.conf.js",
     "build-dev": "set NODE_ENV=production_dev&& webpack --config build/webpack.prod.conf.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "phaser": "^3.22.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
