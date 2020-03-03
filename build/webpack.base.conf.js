@@ -131,60 +131,6 @@ module.exports = {
   stats: "errors-only",
   // 精确控制要显示的 bundle 信息
 
-  optimization: {
-    runtimeChunk: {
-      name: "manifest"
-    },
-    splitChunks: {
-      chunks: "all",
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '_',
-      name: true,
-      cacheGroups: {
-        // commons: { //公共模块 
-        //   name: "commons",
-        //   test: /node_modules\/react-route-dom/,
-        //   chunks: "initial", //入口处开始提取代码
-        //   minSize: 0, //代码最小多大，进行抽离
-        //   minChunks: 2, //代码复 2 次以上的抽离
-        //   priority: 10,
-        //   enforce:true
-        // },
-        // utils1: {
-        //   name: 'utils1',
-        //   test: /react|react-route-dom/,
-        //   chunks: 'all',
-        //   priority: 100,
-        //   enforce:true
-        // },
-        // app: {
-        //   test: /node_modules\/react-route-dom/,
-        //   name: 'app',
-        //   minSize: 0,
-        //   minChunks: 1,
-        //   chunks: 'initial',
-        //   priority: 1 // 该配置项是设置处理的优先级，数值越大越优先处理 
-        // },
-        utils: {
-          name: 'utils',
-          test: /node_modules\/react-lazyload\/lib|core-js|mobx|anti-mobile\/lib|bable-runtime\/helpers|@babel|rmc|js-cookie|axios|i18n/,
-          chunks: 'all',
-          priority: 10,
-          enforce:true
-        },
-        // styles: {
-        //   name: 'styles',
-        //   test: /\.css|scss|less$/,
-        //   chunks: 'all',
-        //   enforce:true
-        // }
-      }
-    }
-  },
-
   plugins: [
     new SWPrecacheWebpackPlugin({
       dontCacheBustUrlsMatching: /\.\w{8}\./,

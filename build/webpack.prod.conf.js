@@ -17,54 +17,50 @@ const webpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   devtool: false,
   optimization: {
-    minimize: _PROD_,
-    minimizer: [
-      // This is only used in production mode
-      new TerserPlugin({
-        terserOptions: {
-          parse: {
-            // we want terser to parse ecma 8 code. However, we don't want it
-            // to apply any minfication steps that turns valid ecma 5 code
-            // into invalid ecma 5 code. This is why the 'compress' and 'output'
-            // sections only apply transformations that are ecma 5 safe
-            // https://github.com/facebook/create-react-app/pull/4234
-            ecma: 8,
-          },
-          compress: {
-            ecma: 5,
-            warnings: false,
-            // Disabled because of an issue with Uglify breaking seemingly valid code:
-            // https://github.com/facebook/create-react-app/issues/2376
-            // Pending further investigation:
-            // https://github.com/mishoo/UglifyJS2/issues/2011
-            comparisons: false,
-            // Disabled because of an issue with Terser breaking valid code:
-            // https://github.com/facebook/create-react-app/issues/5250
-            // Pending futher investigation:
-            // https://github.com/terser-js/terser/issues/120
-            inline: 2,
-            drop_debugger: true,//去除debugeer和console
-            drop_console: true,
-          },
-          mangle: {
-            safari10: true,
-          },
-          output: {
-            ecma: 5,
-            comments: false,
-            // Turned on because emoji and regex is not minified properly using default
-            // https://github.com/facebook/create-react-app/issues/2488
-            ascii_only: true,
-          },
+    runtimeChunk: {
+      name: "manifest"
+    },
+    splitChunks: {
+      chunks: "all",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '_',
+      name: true,
+      cacheGroups: {
+        // commons: { //公共模块 
+        //   name: "commons",
+        //   test: /node_modules\/react-route-dom/,
+        //   chunks: "initial", //入口处开始提取代码
+        //   minSize: 0, //代码最小多大，进行抽离
+        //   minChunks: 2, //代码复 2 次以上的抽离
+        //   priority: 10,
+        //   enforce:true
+        // },
+        // app: {
+        //   test: /node_modules\/react-route-dom/,
+        //   name: 'app',
+        //   minSize: 0,
+        //   minChunks: 1,
+        //   chunks: 'initial',
+        //   priority: 1 // 该配置项是设置处理的优先级，数值越大越优先处理 
+        // },
+        utils: {
+          name: 'common',
+          test: /node_modules\/*/,
+          chunks: 'all',
+          priority: 10,
+          enforce:true
         },
-        // Use multi-process parallel running to improve the build speed
-        // Default number of concurrent runs: os.cpus().length - 1
-        parallel: true,
-        // Enable file caching
-        cache: true,
-        sourceMap: false,
-      }),
-    ],
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.css|scss|less$/,
+        //   chunks: 'all',
+        //   enforce:true
+        // }
+      }
+    }
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
