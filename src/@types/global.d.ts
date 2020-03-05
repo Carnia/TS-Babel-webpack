@@ -1,26 +1,16 @@
-import { MessageApi } from 'antd/lib/message'
-import { NotificationApi } from 'antd/lib/notification'
-import { RouteComponentProps } from 'react-router-dom'
-import { AxiosInstance } from 'axios'
-
+import Phaser from "phaser";
 declare global {
-  export const $http: AxiosInstance
-  
-  export const $msg: MessageApi
-  
-  export const $notice: NotificationApi
-  
-  export interface IProps extends RouteComponentProps {
-    [key: string]: any
-    match:{
-      isExact:boolean
-      path:string
-      url:string
-      params:{
-        pid?:number
-        cid?:number
-        id?:number
-      }
-    }
+  /**
+   * @interface Sence
+   * @extends {Phaser.Scene} 在Phaser.Scene的基础上补充了
+   * @extends {init}
+   * @extends {preload}
+   * @extends {create}
+   */
+  export interface Sence extends Phaser.Scene {
+    init?: () => void;
+    preload?: () => void;
+    create?: () => void;
+    // update?: () => void;
   }
 }
