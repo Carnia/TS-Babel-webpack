@@ -128,7 +128,7 @@ PreloadScene.loadSources = function() {
   this.load.image("score_board", "statics/assets/scoreboard.png"); //得分板
 };
 PreloadScene.create = function() {
-  this.scene.start("menu", { aaa: 234 });
+  this.scene.start("play", { aaa: 234 });
   this.makeLogo().then(() => {
     setTimeout(() => {
       this.scene.start("menu", { aaa: 234 });
