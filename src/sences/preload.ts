@@ -103,7 +103,9 @@ PreloadScene.loadSources = function() {
   this.load.image("title", "statics/assets/title.png"); //游戏标题
   PreloadScene.load.spritesheet("bird", "statics/assets/bird.png", {
     frameWidth: 34,
-    frameHeight: 24
+    frameHeight: 24,
+    startFrame: 1,
+    endFrame: 3
   }); //鸟 3
   this.load.image("btn", "statics/assets/start-button.png"); //按钮
   this.load.spritesheet("pipe", "statics/assets/pipes.png", {
