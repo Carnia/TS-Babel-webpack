@@ -10,13 +10,14 @@ var config = {
   type: Phaser.AUTO,
   width,
   height,
+  // height: height < 700 ? height : 700,
   parent: "app",
   backgroundColor: "#fff",
   physics: {
     default: "arcade",
     arcade: {
       // gravity: { y: 500 },
-      debug: false
+      debug: true
     }
   }
 };
